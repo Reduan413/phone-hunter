@@ -22,7 +22,6 @@ const searchMobile = () => {
 const displaySearchResult = (mobiles) => {
   const searchResult = document.getElementById("search-result");
   mobiles.slice(0, 20).forEach((mobile) => {
-    console.log(mobile);
     const div = document.createElement("div");
     div.classList.add("col-3","rounded");
     div.innerHTML = `
@@ -46,5 +45,113 @@ const loadeMobileDetail = (id) => {
   const url = `https://openapi.programming-hero.com/api/phone/${id}`;
   fetch(url)
   .then(res => res.json())
-  .then(data => console.log(data.data));
+  .then(data => displayMobileDetail(data.data));
 }
+
+const displayMobileDetail = (mobile) => {
+  console.log(mobile);
+  const mobileDetail = document.getElementById("mobile-details");
+  const div = document.createElement("div");
+  div.classList.add('card', 'mb-3');
+  div.style.maxWidth  = "95%";
+  div.innerHTML = `
+      <div class="row g-0">
+        <div class="col-md-4 mobile-img">
+          <img
+            src="${mobile.image}"
+            class="img-fluid rounded-start"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-title">${mobile.name}</h2>
+            <p class="card-text">
+              <span>Exp:</span> ${mobile.releaseDate}
+            </p>
+            
+            <table class="table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col"><h4>Main Features</h4></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">ChipSet</th>
+                    <td>${mobile.mainFeatures.chipSet}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Display Size</th>
+                    <td>
+                    ${mobile.mainFeatures.displaySize}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Memory</th>
+                    <td colspan="2">
+                    ${mobile.mainFeatures.memory}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Sensors</th>
+                    <td colspan="2">
+                     ${mobile.mainFeatures.sensors}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Storage</th>
+                    <td colspan="2">
+                    ${mobile.mainFeatures.storage}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table>
+            <table class="table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col"><h4>Other Information</h4></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Bluetooth</th>
+                    <td>${mobile.others?mobile.others.Bluetooth : "not depine"}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">GPS</th>
+                    <td colspan="2">
+                    ${mobile.others?.GPS}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">NFC</th>
+                    <td colspan="2">
+                    ${mobile.others?.NFC}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Radio</th>
+                    <td colspan="2">${mobile.others?.Radio}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">USB</th>
+                    <td colspan="2">${mobile.others?.USB}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">WLAN</th>
+                    <td colspan="2">${mobile.others?.WLAN}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </table>
+          </div>
+        </div>
+    </div>`;
+  mobileDetail.appendChild(div);
+};
