@@ -108,14 +108,13 @@ header .icons #menu-bars{
 
 .loader-container{
     position: fixed;
-    top:0; left:0;
-    height:100%; 
+    top:100; left:0;
+    margin:auto;
+    height:80%; 
     width:100%;
-    z-index: 10000;
+    display:none;
+    text-align:center;
     background:#fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
 }
 
@@ -123,10 +122,7 @@ header .icons #menu-bars{
     width:35rem;
 }
 
-.loader-container.fade-out{
-    top:-110%;
-    opacity:0;
-}
+
 .card{
     border-radius:15px;
 }

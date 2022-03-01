@@ -1,18 +1,23 @@
-const toggleSpinner = () => {
-  document.getElementById("loader").classList.add("fade-out");
+const toggleSpinner = (displayStyle) => {
+  document.getElementById("loader").style.display = displayStyle;
 };
-window.onload = () => {
-  setInterval(function () {
-    toggleSpinner();
-  }, 0);
+
+const toggleSearchResult = (displayStyle) => {
+  document.getElementById("search-mobile").style.display = displayStyle;
 };
+
 
 const searchMobile = () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
 
+  //display loader
+  toggleSpinner("block");
+  toggleSearchResult("none");
+
+  //clear data
   searchField.value = "";
-  //console.log(searchText);
+  
   const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
   fetch(url)
     .then((res) => res.json())
@@ -21,6 +26,7 @@ const searchMobile = () => {
 
 const displaySearchResult = (mobiles) => {
   const searchResult = document.getElementById("search-result");
+  searchResult.textContent = "";
   mobiles.slice(0, 20).forEach((mobile) => {
     const div = document.createElement("div");
     div.classList.add("col-3","rounded");
@@ -38,6 +44,8 @@ const displaySearchResult = (mobiles) => {
         `;
     searchResult.appendChild(div);
   });
+  toggleSpinner("none");
+  toggleSearchResult("block");
 };
 
 const loadeMobileDetail = (id) => {
@@ -49,8 +57,8 @@ const loadeMobileDetail = (id) => {
 }
 
 const displayMobileDetail = (mobile) => {
-  console.log(mobile);
   const mobileDetail = document.getElementById("mobile-details");
+  mobileDetail.textContent = "";
   const div = document.createElement("div");
   div.classList.add('card', 'mb-3');
   div.style.maxWidth  = "95%";
@@ -98,7 +106,10 @@ const displayMobileDetail = (mobile) => {
                   <tr>
                     <th scope="row">Sensors</th>
                     <td colspan="2">
-                     ${mobile.mainFeatures.sensors}
+                     ${mobile.mainFeatures.sensors.map((sensor)=>{
+                        return`  ${sensor}  `
+                     })}
+
                     </td>
                   </tr>
                   <tr>
@@ -110,8 +121,8 @@ const displayMobileDetail = (mobile) => {
                 </tbody>
               </table>
             </table>
-            <table class="table">
-              <table class="table">
+            ${mobile.others?
+              `<table class="table">
                 <thead>
                   <tr>
                     <th scope="col"><h4>Other Information</h4></th>
@@ -121,7 +132,7 @@ const displayMobileDetail = (mobile) => {
                 <tbody>
                   <tr>
                     <th scope="row">Bluetooth</th>
-                    <td>${mobile.others?mobile.others.Bluetooth : "not depine"}</td>
+                    <td>${mobile.others.Bluetooth}</td>
                   </tr>
                   <tr>
                     <th scope="row">GPS</th>
@@ -148,8 +159,7 @@ const displayMobileDetail = (mobile) => {
                     <td colspan="2">${mobile.others?.WLAN}</td>
                   </tr>
                 </tbody>
-              </table>
-            </table>
+              </table>`:''}
           </div>
         </div>
     </div>`;
