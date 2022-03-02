@@ -38,7 +38,7 @@ const searchMobile = () => {
   if (searchText == "") {
     const errorResult = document.getElementById("error-message");
     errorResult.innerHTML = `
-    <h1 class="text-danger">Write Something What brand mobile are you find</h1>
+    <h1 class="text-danger">Write Something..What brand of mobile are you looking for?</h1>
     `;
     errorResult.style.display = "block";
     //display none mobile detail
@@ -49,6 +49,7 @@ const searchMobile = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => displaySearchResult(data.data));
+    document.getElementById("mobile-details").innerHTML = "";
     toggleError("none");
   }
 };
@@ -77,7 +78,7 @@ const displaySearchResult = (mobiles) => {
         "col-12",
         "col-sm-6",
         "col-md-4",
-        "col-lg-3",
+        "col-lg-4",
         "rounded"
       );
       div.innerHTML = `
@@ -130,11 +131,11 @@ const displayMobileDetail = (mobile) => {
           <div class="card-body">
             <h2 class="card-title">${mobile.name}</h2>
             <p class="card-text">
-              <span>Exp:</span> ${
-                mobile.releaseDate
-                  ? mobile.releaseDate
-                  : "Release Date not found"
-              }
+               ${
+               mobile.releaseDate
+                 ? mobile.releaseDate
+                 : "Release Date not found"
+             }
             </p>
             
             <table class="table">
