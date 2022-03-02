@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cocktail</title>
+    <!--bootstrap stylesheet link-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <!--font awesome link-->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -18,9 +20,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!--stylesheet-->
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!--header section start -->
     <section>
       <header>
         <a href="#" class="logo"
@@ -53,20 +57,39 @@
         </div>
       </div>
     </section>
+    <!--header section end -->
+    <!--Error part-->
+    <div class="d-flex align-items-center justify-content-center w-100 mt-5">
+      <div id="error-message"></div>
+    </div>
     <!-- loader part  -->
     <div class="loader-container" id="loader">
       <img src="images/loader.gif" alt="" />
     </div>
+    <!--mobile  details section start -->
     <section>
       <!-- single mobile details -->
       <div id="mobile-details" class="container"></div>
     </section>
+    <!--mobile details section end -->
+    <!--mobiles section start -->
     <section>
       <!--mobile search results -->
-      <div id="search-mobile" class="container">
+      <div id="search-mobile" class="container mb-5">
         <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4"></div>
+        <div class="d-grid">
+          <button
+            id="showAll"
+            class="btn btn-success btn-lg btn-show"
+            onclick=""
+            type="button"
+          >
+            Show More
+          </button>
+        </div>
       </div>
     </section>
+    <!--mobiles section end -->
 
     <script src="js/script.js"></script>
     <script

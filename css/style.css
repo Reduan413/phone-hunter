@@ -14,7 +14,6 @@
     text-decoration: none;
     outline: none; border:none;
     text-transform: capitalize;
-    transition: all .2s linear;
 }
 
 html{
@@ -118,11 +117,15 @@ header .icons #menu-bars{
     overflow: hidden;
 }
 
+#error-message{
+    display:none;
+}
 .loader-container img{
     width:35rem;
 }
-
-
+#mobile-details{
+    margin-top:-30px;
+}
 .card{
     border-radius:15px;
 }
@@ -137,8 +140,34 @@ header .icons #menu-bars{
     border-radius: 10px;
     background-image: linear-gradient(160deg, rgb(29, 115, 228), rgb(69, 138, 84));
 }
+.btn-show{
+    width:30%;
+    margin:auto;
+    margin-top: 15px;
+    margin-bottom:40px;
+    border-radius: 10px;
+    background-image: linear-gradient(160deg, #27ae60, #23ec77);
+    font-size:20px;
+    display:none;
+}
 .mobile-img img{
     width:90%;
     padding: 15px;
     margin-top:20px;
+}
+@media only screen and (max-width:688px){
+    #error-message h1{
+        font-size: 1.5rem;
+    }
+    #mobile-details{
+        margin-top:-30px
+    }
+    .mobile-img{
+        text-align: center;
+    }
+    .mobile-img img{
+        width:50%;
+        padding: 5px;
+        margin-top:10px;
+    }
 }
